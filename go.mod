@@ -1,4 +1,4 @@
-module self/zap
+module myzap
 
 go 1.12
 
