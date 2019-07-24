@@ -1,4 +1,4 @@
-package zap
+package myzap
 
 import (
 	"encoding/json"
@@ -19,9 +19,9 @@ var (
 	// CleanCycle 清理周期
 	CleanCycle int64 = 60 * 60 // 1h
 	Zlogger    *Zaplogger
-	logger *zap.Logger
-	cleans []*clean
-	files  []*writer
+	logger     *zap.Logger
+	cleans     []*clean
+	files      []*writer
 )
 
 // Zaplogger 对于整个项目用一个logger对象，使用此对象
@@ -39,7 +39,6 @@ type Config struct {
 
 // Logger zap.Logger
 type Logger = zap.Logger
-
 
 type EncoderCFG struct {
 	MessageKey   string `json:"messageKey"`
@@ -59,7 +58,6 @@ type Conf struct {
 	//DisableCaller     bool     `json:"disableCaller"`
 }
 
-
 func Init(conf *Conf) error {
 	conf.EncoderConfig.MessageKey = "message"
 	conf.EncoderConfig.LevelKey = "level"
@@ -73,7 +71,7 @@ func Init(conf *Conf) error {
 	if err := json.Unmarshal(jsonByte, cfg); err != nil {
 		panic(err)
 	}
-	cfg.DisableCaller=true
+	cfg.DisableCaller = true
 	cfg.EncoderConfig.TimeKey = "datetime"
 	cfg.EncoderConfig.EncodeTime = func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 		enc.AppendString(t.Format("2006-01-02 15:04:05"))
@@ -92,7 +90,6 @@ func Init(conf *Conf) error {
 
 	return nil
 }
-
 
 // LoadConfiguration ...
 func LoadConfiguration(filename string) *Logger {

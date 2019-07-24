@@ -1,4 +1,4 @@
-package zap
+package myzap
 
 import (
 	"os"
