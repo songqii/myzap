@@ -1,4 +1,4 @@
-module myzap
+module github.com/songqii/myzap
 
 go 1.12
 
